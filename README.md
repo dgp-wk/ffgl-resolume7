@@ -69,9 +69,9 @@ Read [this](https://github.com/resolume/ffgl/wiki) (maybe). I'm going to assume 
 		- Assuming everything above worked out, I want you to open up the _config.h file within your new Effect project.
 			- This is a convenience file that lets us define some stuff without messing up the main body of the effect code.
 			- Change the `PLUGIN_ID` and the `PLUGIN_NAME` to something that you would recognize. How about `TST1` and `,Test Effect`?
-		- Open up _shader.h
+		- Open up ``_shader.h``
 			- This is a program that will run on the GPU. It is taking a color -- `InColor` -- from the Resolume GUI and splatting it right on the screen. We're gonna mess with it a bit.
-			- 	Replace `fragColor = InColor;` with `vec4(uv[0]*InColor.r,uv[1]*InColor.g,uv[0]*uv[1]*InColor.b,1);`
+			- 	Replace `fragColor = color;` with `fragColor = vec4( i_uv[0] * color.r, i_uv[1]  *color.g, i_uv[0] * i_uv[1] * color.b, 1);`
 		- Build the project. Go to Resolume and pull your effect into the Composition. Find its widget in the inspector and move the colors around. What do you see? Is it a big funky gradient? If so, do a happy happy dance.
 
 ### Notes on Development, Debugging, and Building
