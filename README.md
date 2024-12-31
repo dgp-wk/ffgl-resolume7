@@ -1,8 +1,7 @@
-
-> December 30, 2024 - Precompiled Windows Binaries [here](https://github.com/dgp-wk/ffgl-resolume7/releases).
+Precompiled Windows Binaries [here](https://github.com/dgp-wk/ffgl-resolume7/releases).
 >
 >*Note: This is for Resolume 7. These plugins will probably break in other FFGL-aware software.*
-This is one *fork* of the Resolume *fork* of the FFGL repository with a few additional plugins: 
+This forks the Resolume fork of the FFGL repository and adds a few additional plugins: 
 
 - Image Effects Shaders 
 	- Image Effects (Groups all the bottom filters into one filter)
@@ -16,7 +15,7 @@ This is one *fork* of the Resolume *fork* of the FFGL repository with a few addi
 
 - Misc. Effects
 	- Wrapper (Emulates the texture wrap function -- stretch the edges of an image across the composition.)
-	- Example (A more pared down example than what's already been included.)
+	- Example (Basically the example from the wiki, but works.)
 
 > I'm also adding a guide so that friends of mine who've never built one of these plugins can try to do it themselves. Good luck.
 
@@ -24,63 +23,64 @@ This is one *fork* of the Resolume *fork* of the FFGL repository with a few addi
 Read [this](https://github.com/resolume/ffgl/wiki) (maybe). I'm going to assume that you've never worked with Visual Studio, C++, glsl, or have done any software development in the past. This HOW TO will guide you all the way up to making your first effect filter with some copy-paste code.
 1. Install Visual Studio. You probably want the community edition (which is free).
 	- https://visualstudio.microsoft.com/
-	- While installing Visual Studio, make sure to **check whatever box** offers to install the **Windows SDK**.
+	- While installing Visual Studio, make sure to **check whatever box** installs the **Windows SDK**.
 2. Get a copy of this repository.
 	- (Simple) Download [this zip](https://github.com/dgp-wk/ffgl-resolume7/archive/refs/heads/master.zip) and extract it somewhere where you can find it.
 	- (Less Simple) Check out this repository from github
 		- Open Visual Studio
 		- On the right hand side, click "Clone a Repository"
-		- Copy and paste https://github.com/dgp-wk/ffgl-resolume7.git into the Repository location dialog.
+		- Copy and paste https://github.com/dgp-wk/ffgl-resolume7.git into the `Repository location` dialog.
 3. Open the project.
 	- You'll want to open the project using the `FFGLPlugins.sln` file. It'll be located in the `build\windows\` folder inside of the project directory. When in doubt, just search for the filename.
-		- If you cloned the project, Visual Studio will just open it. However, you'll still need to search out the solution file on subsequent openings.
+		- If you cloned the project, Visual Studio will just open it. However, you'll still need to know where the solution file is located.
 	- Once the project loads up, give it a few minutes to scan and analyze.
 4. Build the project.
-	- Look at the middle-top of the Visual Studio window. You should see a group of drop-down boxes that say something like `Local Machine` `Debug` and `x64`. Make sure they match.
-	- Look for "Build" at the top of the Visual Studio. Click on it and select "Build Solution"
-		- Or just press F7.
+	- Look at the middle-top of the Visual Studio window. You should see a group of drop-down boxes that say something like `Local Machine` `Debug` and `x64`.
+	- Look for `Build` at the top of the Visual Studio window. Click on it and select `Build Solution`.
+		- Or just press `F7`.
 	- Go grab a coffee. This is going to compile all of the plugins in the project. It can take about 5 minutes.
 	- If everything compiles without throwing an error, do a happy dance. 
 5. Tell Resolume where to find your plugins.
 	- Open Resolume.
 	- Hit the `Arena` menu, then open `Preferences`.
 	- Click on `Video`.
-	- Press the + button. A file dialogue will open up. Navagate to where your project files are located. Go **into** the `binaries\x64\Debug` folder, then hit `Select Folder`.
-	- Close the Preferences window. Resolume should have already started loading in the effects you built earlier.
+	- Press the `+` button. A file dialogue will open up. Navagate to where your project files are located. Go **into** the `binaries\x64\Debug` folder, then hit `Select Folder`.
+	- Close the `Preferences` window. Resolume should have already started loading in the effects you built earlier.
 6. Create a New Effect.
 	- Create a new project meta file. (This part sucks)
-		- Go into your file explorer and enter the `build\windows\` directory. This is the same place where the `FFGLPlugins.sln` is sitting.
+		- Go into your file explorer and enter the `build\windows\` directory. This is the same place where `FFGLPlugins.sln` is sitting.
 		- Copy `Example_Effect.vcxproj`, then rename it to a name of your choosing (how about `Test_Effect.vcxproj`?).
 		- Open your new `.vcxproj` Using notepad (++, or a text editor of your choosing).
-		- The your find function to search for `<ProjectGuid>`. It'll find something like: `<ProjectGuid>{FC65EF1A-9029-40B9-B703-F1A8F563D458}</ProjectGuid>`
-			- Delete it. The whole line.
+		- Search for `<ProjectGuid>`. It'll find something like: `<ProjectGuid>{FC65EF1A-9029-40B9-B703-F1A8F563D458}</ProjectGuid>`
+			- Delete it. Delete the whole line.
 		- Search and replace `Example_Effect` with a name for your effect (how about `Test_Effect`?).
 		- Save and close.
-	- Copy the Example_Effect files and load them into Visual Studio. (This part is a bit better)
+	- Copy the `Example_Effect` files and add them into Visual Studio. (This part is a bit better)
 		- Back out to the `\source\plugins` folder. 
-		- Find the Example_Effects folder and copy it. *Rename it with a name for your effect, the same name you've been using all along (how about `Test_Effect`?).*
+		- Find the `Example_Effects` folder and make a copy of it. *Rename it with a name for your effect, the same name you've been using all along* (how about `Test_Effect`?).
 		- Go back to Visual Studio. 
 		- On the left hand side, on the Solution Explorer, right-click on the Solution (it should be the first item in the list).
 		- Hover `Add` then select `Existing Project...`
 		- Navigate your way back to the `build\windows\` and select your `.vcxproj` file.
 		- Assuming everything went well, it should load in your new Effect project and all the files you made a copy of.
 			- You'll probably also notice that there are a bunch of files in the project. Those are external dependencies which need to be in there for compilation, but because we didn't copy over the project's `.filters` file, they're not sorted neatly. Make a new folder within the Visual Studio project (how about `lib`?) and drag all of those unfamiliar files in there.
+			- Basically, move everything but `Effect.h`, `Effect.cpp`, `_config.h`, `_shader.h`
 	- Start messing around.
-		- Assuming everything above worked out, I want you to open up the _config.h file within your new Effect project.
-			- This is a convenience file that lets us define some stuff without messing up the main body of the effect code.
+		- Assuming everything above worked out, open up the `_config.h` file within your new project.
 			- Change the `PLUGIN_ID` and the `PLUGIN_NAME` to something that you would recognize. How about `TST1` and `,Test Effect`?
-		- Open up ``_shader.h``
-			- This is a program that will run on the GPU. It is taking a color -- `InColor` -- from the Resolume GUI and splatting it right on the screen. We're gonna mess with it a bit.
+		- Open up `_shader.h`
+			- This is a program that will run on the GPU. It is taking a color -- `color` -- from the Resolume GUI and splatting it right on the screen. We're gonna mess with it a bit.
 			- 	Replace `fragColor = color;` with `fragColor = vec4( i_uv[0] * color.r, i_uv[1]  *color.g, i_uv[0] * i_uv[1] * color.b, 1);`
-		- Build the project. Go to Resolume and pull your effect into the Composition. Find its widget in the inspector and move the colors around. What do you see? Is it a big funky gradient? If so, do a happy happy dance.
+		- Build the project. Go to Resolume and pull your effect somewhere into the Composition. Find its widget in the inspector and move the colors around. What do you see? Is it a big funky gradient? If so, do a happy happy dance.
 
 ### Notes on Development, Debugging, and Building
 
- - Visual studio will fail a build if you have a plugin currently *slotted* in Resolume. That is, if you have a layer hidden somewhere with your Effect applied to it, it just won't build. You'll have to close all instances if your effect in Resolume before you can build a new version of it.
- - So long as you built with the Debug configuration, you'll be able to drop breakpoints and watches and step through the code. You'll need to attach to the Arena process.
- - The Resolume FFGL repository is 50/50 on example quality. The instructions in the Wiki will point you into building a project that will build, but will fail to do anything in Resolume. The AddSubtract project does work, however, but it lacks some of the newer syntactic sugar.
- - Similarly, the `ffglqs` namespace will offer you some pretty Plugin classes with all that syntactic sugar, but YMMV.
+ - Visual studio will fail to build if you're running Resolume with that plugin attached to anything. It's because Resolume is locking the dll. Unattach that plugin from everywhere it's loaded in Resolume, or close Resolume, to finish the build.
+ - The Resolume FFGL repository is 50/50 on example quality. The instructions in the Wiki will point you into building a project that will build, but the shader will probably fail to compile. The AddSubtract project does work, however, but it lacks some of the newer syntactic sugar.
+ - Similarly, the `ffglqs` (for FFGL Quick Start) namespace will offer you some pretty Plugin classes, but they can be a bit restricting. There's no high level documentation that I'm aware of. YMMV.
  - Some people have been building additional frameworks and plugin-generators, including a Rust-based framework which seems pretty slick, at least at a distance. https://github.com/edeetee/ffgl-rs
+ - Build Release for actual use. The debug builds will have traces that will probably pop on one or two asserts inside FFGL.
+ - For distribution, you can drop plugin .DLLs into `Documents\Resolume Arena\Extra Effects`.
 
 ## HOW TO (Mac)
 - lol. lmao even
