@@ -24,7 +24,7 @@ static const char _fragmentShaderCode[] = R"(#version 410 core
 // Most Shaders Derived from https://www.shadertoy.com/view/NstSWf
 
 uniform sampler2D InputTexture;
-uniform vec3 Uniform1;
+uniform vec2 Uniform1;
 
 float _exposure;
 float _power;
@@ -47,8 +47,8 @@ void main()
 {
 	//Pull uniforms
 
-	_exposure		= Uniform1.r;
-	_power			= Uniform1.g;
+	_exposure		= Uniform1.x;
+	_power			= Uniform1.y;
 
 	vec4 color = texture( InputTexture, uv );
 	//The InputTexture contains premultiplied colors, so we need to unpremultiply first to apply our effect on straight colors.

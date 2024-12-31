@@ -25,21 +25,8 @@ static CFFGLPluginInfo PluginInfo(
 
 
 
-ImageEffects::ImageEffects() :
-	colorTemperature( 6500.0f ), 
-	exposure( 0.0f ), 
-	brightness( 0.0f ), 
-	contrast( 0.0f ), 
-	saturation( 0.0f ), 
-	gamma( 0.0f ),
-	levelHigh( 0.0f ), 
-	levelMid( 0.0f ), 
-	levelLow( 0.0f ), 
-	highThresold( 0.0f ), 
-	lowThresold( 0.0f ), 
-	red( 0.0f ), 
-	green( 0.0f ), 
-	blue( 0.0f )
+ImageEffects::ImageEffects() : 
+	gamma( 0.0f )
 {
 	SetMinInputs( 1 );
 	SetMaxInputs( 1 );
@@ -56,7 +43,6 @@ ImageEffects::~ImageEffects()
 
 unsigned int ImageEffects::Connect()
 {
-	colorTemperature = 6500.0f;
 	return FF_SUCCESS;
 }
 
@@ -98,7 +84,7 @@ FFResult ImageEffects::ProcessOpenGL( ProcessOpenGLStruct* pGL )
 	FFGLTexCoords maxCoords = GetMaxGLTexCoords( *pGL->inputTextures[ 0 ] );
 	shader.Set( "MaxUV", maxCoords.s, maxCoords.t );
 
-	glUniform3f( shader.FindUniform( "Uniform2" ), gamma + GAMMA_FUDGE, saturation + SATURATION_FUDGE, colorTemperature );
+	glUniform1f( shader.FindUniform( "Uniform1" ), gamma + GAMMA_FUDGE );
 
 	quad.Draw();
 

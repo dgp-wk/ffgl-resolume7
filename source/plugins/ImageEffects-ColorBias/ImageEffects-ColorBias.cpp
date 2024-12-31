@@ -15,7 +15,7 @@ enum ParamType : FFUInt32
 static CFFGLPluginInfo PluginInfo(
 	PluginFactory< ImageEffects >,                       // Create method
 	"IE01",                      // Plugin unique ID of maximum length 4.
-	",Color Bias",            // Plugin name
+	",Color Bias",				 // Plugin name
 	2,                           // API major version number
 	1,                           // API minor version number
 	1,                           // Plugin major version number
@@ -28,17 +28,6 @@ static CFFGLPluginInfo PluginInfo(
 
 
 ImageEffects::ImageEffects() :
-	colorTemperature( 6500.0f ), 
-	exposure( 0.0f ), 
-	brightness( 0.0f ), 
-	contrast( 0.0f ), 
-	saturation( 0.0f ), 
-	gamma( 0.0f ),
-	levelHigh( 0.0f ), 
-	levelMid( 0.0f ), 
-	levelLow( 0.0f ), 
-	highThresold( 0.0f ), 
-	lowThresold( 0.0f ), 
 	red( 0.0f ), 
 	green( 0.0f ), 
 	blue( 0.0f )
@@ -62,7 +51,6 @@ ImageEffects::~ImageEffects()
 
 unsigned int ImageEffects::Connect()
 {
-	colorTemperature = 6500.0f;
 	return FF_SUCCESS;
 }
 
@@ -104,7 +92,7 @@ FFResult ImageEffects::ProcessOpenGL( ProcessOpenGLStruct* pGL )
 	FFGLTexCoords maxCoords = GetMaxGLTexCoords( *pGL->inputTextures[ 0 ] );
 	shader.Set( "MaxUV", maxCoords.s, maxCoords.t );
 
-	glUniform3f( shader.FindUniform( "Uniform3" ), red, green, blue );
+	glUniform3f( shader.FindUniform( "Uniform1" ), red, green, blue );
 
 	quad.Draw();
 

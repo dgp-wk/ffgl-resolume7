@@ -6,7 +6,7 @@ This is one *fork* of the Resolume *fork* of the FFGL repository with a few addi
 
 - Image Effects Shaders 
 	- Image Effects (Groups all the bottom filters into one filter)
-	- Color Bias (Alternative to the Add Subtract (color) filter)
+	- Color Bias (Alternative to the Add Subtract (color) filter. This is more of a tint than a straight add/subtract.)
 	- Color Temperature
 	- Exposure (An alternative to the built-in Exposure effect, but offers additional effect power)
 	- Gamma

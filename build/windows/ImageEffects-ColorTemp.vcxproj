@@ -44,7 +44,7 @@
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginManager.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginSDK.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.cpp" />
-    <ClCompile Include="..\..\source\plugins\ImageEffects-ColorTemp\ImageEffects-ColorTemp.cpp" />
+    <ClCompile Include="..\..\source\plugins\ImageEffects-ColorTemp\Effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\lib\ffglex\FFGLFBO.h" />
@@ -82,8 +82,9 @@
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginManager.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginSDK.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-ColorTemp\ShaderCode.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-ColorTemp\ImageEffects-ColorTemp.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-ColorTemp\Effect.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-ColorTemp\_config.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-ColorTemp\_shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>
@@ -133,7 +134,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AVFFGLImageEffects-ColorTemp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

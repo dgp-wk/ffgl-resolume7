@@ -88,7 +88,7 @@ FFResult ImageEffects::ProcessOpenGL( ProcessOpenGLStruct* pGL )
 	FFGLTexCoords maxCoords = GetMaxGLTexCoords( *pGL->inputTextures[ 0 ] );
 	shader.Set( "MaxUV", maxCoords.s, maxCoords.t );
 
-	glUniform3f( shader.FindUniform( "Uniform1" ), exposure, power, 0 );
+	glUniform2f( shader.FindUniform( "Uniform1" ), exposure, power );
 
 	quad.Draw();
 

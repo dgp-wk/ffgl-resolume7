@@ -23,13 +23,6 @@ private:
 	ffglex::FFGLShader shader;  //!< Utility to help us compile and link some shaders into a program.
 	ffglex::FFGLScreenQuad quad;//!< Utility to help us render a full screen quad.
 
-	// Color Temperature
-	float colorTemperature;
-	
 	// Image Effects
-	float exposure, brightness, contrast, saturation, gamma;
-	float levelHigh, levelMid, levelLow, highThresold, lowThresold;
-
-	// Color Channel Fiddlers
-	float red, green, blue;
+	float  gamma;
 };
