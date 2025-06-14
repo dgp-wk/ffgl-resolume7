@@ -85,8 +85,8 @@ ImageEffects::ImageEffects() :
 	SetParamRange( PT_HIGHPOINT_GAIN, -1.0f, 1.0f );
 	SetParamRange( PT_MIDPOINT_GAIN, -1.0f, 1.0f );
 	SetParamRange( PT_LOWPOINT_GAIN, -1.0f, 1.0f );
-	SetParamRange( PT_HIGHPOINT_THRESHOLD, 0.5f, 1.0f );
-	SetParamRange( PT_LOWPOINT_THRESHOLD, 0.0f, 0.5f );
+	SetParamRange( PT_HIGHPOINT_THRESHOLD, 0.0f, 1.0f );
+	SetParamRange( PT_LOWPOINT_THRESHOLD, 0.0f, 1.0f );
 
 	SetParamRange( PT_COLOR_TEMP, 2000.0f, 12000.0f );
 

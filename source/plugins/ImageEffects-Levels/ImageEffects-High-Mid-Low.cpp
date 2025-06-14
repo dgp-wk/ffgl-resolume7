@@ -1,9 +1,6 @@
-#include "ImageEffects-Levels.h"
+#include "ImageEffects-High-Mid-Low.h"
 #include "ShaderCode.h"
 using namespace ffglex;
-
-#define SATURATION_FUDGE -0.3f
-#define GAMMA_FUDGE -0.04497f
 
 enum ParamType : FFUInt32
 {
@@ -17,7 +14,7 @@ enum ParamType : FFUInt32
 static CFFGLPluginInfo PluginInfo(
 	PluginFactory< ImageEffects >,                       // Create method
 	"IE04",                      // Plugin unique ID of maximum length 4.
-	",Levels",            // Plugin name
+	",High-Mid-Low",            // Plugin name
 	2,                           // API major version number
 	1,                           // API minor version number
 	1,                           // Plugin major version number
@@ -48,8 +45,8 @@ ImageEffects::ImageEffects() :
 	SetParamRange( PT_HIGHPOINT_GAIN, -1.0f, 1.0f );
 	SetParamRange( PT_MIDPOINT_GAIN, -1.0f, 1.0f );
 	SetParamRange( PT_LOWPOINT_GAIN, -1.0f, 1.0f );
-	SetParamRange( PT_HIGHPOINT_THRESHOLD, 0.5f, 1.0f );
-	SetParamRange( PT_LOWPOINT_THRESHOLD, 0.0f, 0.5f );
+	SetParamRange( PT_HIGHPOINT_THRESHOLD, 0.0f, 1.0f );
+	SetParamRange( PT_LOWPOINT_THRESHOLD, 0.0f, 1.0f );
 
 	FFGLLog::LogToHost( "Created ImageEffects-Levels effect" );
 }
