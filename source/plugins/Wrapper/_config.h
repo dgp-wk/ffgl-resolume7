@@ -11,4 +11,4 @@
 #define PLUGIN_DESCRIPTION		"Wrapper Effect"
 #define PLUGIN_ABOUT			"Apples a texture wrapping effect."
 
-#define LOG_TEXT_CREATED "FFGL: Created " PLUGIN_NAME " effect"
+#define LOG_TEXT_CREATED		"FFGL: Created " PLUGIN_NAME " effect"
