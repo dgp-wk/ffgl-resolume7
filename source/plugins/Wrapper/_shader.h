@@ -31,31 +31,19 @@ static const std::string fshader = R"(
 
 void main()
 {
-	vec2 border = vec2(helperSize/resolution.x,helperSize/resolution.y);
-
 	vec4 color = texture
 		(	
 			inputTexture, 
 			vec2
 			(
-				min(max(i_uv.x,box + offsetX), 1-box + offsetX),
-				min(max(i_uv.y,box + offsetY), 1-box + offsetY)
+				min(max(i_uv.x,left), 1-right),
+				min(max(i_uv.y,bottom), 1-top)
 			)
 		);
 
 	//The InputTexture contains premultiplied colors, so we need to unpremultiply first to apply our effect on straight colors.
 	if( color.a > 0.0 )
 		color.rgb /= color.a;
-
-	// Draw the helper border.
-	float left = step(box + offsetX,i_uv.x) + step(i_uv.x + border.x,box + offsetX);
-	float right = step(1-box + offsetX,i_uv.x - border.x) + step(i_uv.x,1-box + offsetX);
-	float top = step(1-box + offsetY,i_uv.y - border.y) + step(i_uv.y,1-box + offsetY);
-	float bottom = step(box + offsetY,i_uv.y) + step(i_uv.y + border.y,box + offsetY);
-	
-	float drawBorder = (left * right * top * bottom);
-	color.rgb = (helperColor.rgb * (1-drawBorder)) + (color.rgb * drawBorder);
-	//color.a *= drawBorder;
 
 	//The plugin has to output premultiplied colors, this is how we're premultiplying our straight color while also
 	//ensuring we aren't going out of the LDR the video engine is working in.
