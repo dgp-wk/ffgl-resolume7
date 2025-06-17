@@ -44,7 +44,7 @@
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginManager.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginSDK.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.cpp" />
-    <ClCompile Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-Levels.cpp" />
+    <ClCompile Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-High-Mid-Low.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\lib\ffglex\FFGLFBO.h" />
@@ -83,12 +83,13 @@
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginSDK.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.h" />
     <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ShaderCode.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-Levels.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-High-Mid-Low.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectGuid>{F0803C3C-ED46-4B56-923F-2D814B32E778}</ProjectGuid>
+    <ProjectName>ImageEffects-High-Mid-Low</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

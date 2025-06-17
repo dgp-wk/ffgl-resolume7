@@ -14,7 +14,7 @@ enum ParamType : FFUInt32
 static CFFGLPluginInfo PluginInfo(
 	PluginFactory< ImageEffects >,                       // Create method
 	"IE04",                      // Plugin unique ID of maximum length 4.
-	",High-Mid-Low",            // Plugin name
+	",Highs/Mids/Lows",            // Plugin name
 	2,                           // API major version number
 	1,                           // API minor version number
 	1,                           // Plugin major version number

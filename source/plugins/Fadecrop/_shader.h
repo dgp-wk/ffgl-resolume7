@@ -76,3 +76,7 @@ void main()
 	fragColor = color;
 }
 )";
+
+// Todo: It may be worth reworking all the conditionals in this to step functions:
+// https://medium.com/@banksysan_10088/glsl-converting-ifs-to-steps-b22331231eaa
+// I say *may* because there is much opinion out there that optimizing shaders away from conditions considered harmful.

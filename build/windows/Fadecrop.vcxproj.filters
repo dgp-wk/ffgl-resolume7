@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-High-Mid-Low.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGL.cpp">
       <Filter>lib</Filter>
     </ClCompile>
@@ -101,10 +100,9 @@
     <ClCompile Include="..\..\source\lib\ffglex\FFGLUtilities.cpp">
       <Filter>lib</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\plugins\Fadecrop\Effect.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ShaderCode.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-High-Mid-Low.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGL.h">
       <Filter>lib</Filter>
     </ClInclude>
@@ -210,10 +208,13 @@
     <ClInclude Include="..\..\source\lib\ffglquickstart\FFGLUtils.h">
       <Filter>lib</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\plugins\Fadecrop\Effect.h" />
+    <ClInclude Include="..\..\source\plugins\Fadecrop\_config.h" />
+    <ClInclude Include="..\..\source\plugins\Fadecrop\_shader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="lib">
-      <UniqueIdentifier>{53d531a6-888d-47c1-97cd-755d4f9cd397}</UniqueIdentifier>
+      <UniqueIdentifier>{d9246e51-98d4-47b2-9eb9-e7a8abf41a49}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

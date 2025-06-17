@@ -44,7 +44,7 @@
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginManager.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginSDK.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.cpp" />
-    <ClCompile Include="..\..\source\plugins\ImageEffects-Gamma\Effect.cpp" />
+    <ClCompile Include="..\..\source\plugins\ImageEffects-Contrast\Effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\lib\ffglex\FFGLFBO.h" />
@@ -82,14 +82,14 @@
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginManager.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginSDK.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Gamma\Effect.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Gamma\_config.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Gamma\_shader.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Contrast\Effect.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Contrast\_config.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Contrast\_shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectGuid>{A31F38DD-D22D-4E7C-85F7-D9A45432C88D}</ProjectGuid>
+    <ProjectGuid>{31944FDF-DFC4-40ED-B2DD-43C401B628EF}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -134,7 +134,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AVFFGLImageEffects-Gamma_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -155,7 +155,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AVFFGLImageEffects-Gamma_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AVFFGLImageEffects-Contrast_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
