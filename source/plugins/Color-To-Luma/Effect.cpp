@@ -15,6 +15,7 @@ Effect::Effect()
 	SetParamDisplayName( 0, "Red", true );
 	SetParamDisplayName( 1, "Green", true );
 	SetParamDisplayName( 2, "Blue", true );
+
 }
 
 Effect::~Effect()
