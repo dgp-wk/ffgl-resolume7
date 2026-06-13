@@ -60,6 +60,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageEffects-Contrast", "Im
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Color-To-Luma", "Color-To-Luma.vcxproj", "{11107F93-E75F-42AD-B662-1615B76F22C4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Image Effects - Opacity", "ImageEffects-Alpha.vcxproj", "{E9FFD21C-C022-48FD-B964-07954FBCFCB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -212,6 +214,14 @@ Global
 		{11107F93-E75F-42AD-B662-1615B76F22C4}.Release|x64.Build.0 = Release|x64
 		{11107F93-E75F-42AD-B662-1615B76F22C4}.Release|x86.ActiveCfg = Release|x64
 		{11107F93-E75F-42AD-B662-1615B76F22C4}.Release|x86.Build.0 = Release|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Debug|x64.ActiveCfg = Debug|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Debug|x64.Build.0 = Debug|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Debug|x86.ActiveCfg = Debug|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Debug|x86.Build.0 = Debug|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Release|x64.ActiveCfg = Release|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Release|x64.Build.0 = Release|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Release|x86.ActiveCfg = Release|x64
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,6 +250,7 @@ Global
 		{8A702E3F-6C4F-486E-B176-8E4A3E4AF8FF} = {D5C0ED1E-C916-4E25-A481-D9C80FC02EA5}
 		{31944FDF-DFC4-40ED-B2DD-43C401B628EF} = {D5C0ED1E-C916-4E25-A481-D9C80FC02EA5}
 		{11107F93-E75F-42AD-B662-1615B76F22C4} = {A49F1C0F-BA32-41F9-9B77-24E246640B54}
+		{E9FFD21C-C022-48FD-B964-07954FBCFCB6} = {D5C0ED1E-C916-4E25-A481-D9C80FC02EA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28436461-C06F-497A-8594-636977E4CDAF}

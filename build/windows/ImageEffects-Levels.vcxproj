@@ -44,7 +44,7 @@
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginManager.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLPluginSDK.cpp" />
     <ClCompile Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.cpp" />
-    <ClCompile Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-High-Mid-Low.cpp" />
+    <ClCompile Include="..\..\source\plugins\ImageEffects-Levels\Effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\lib\ffglex\FFGLFBO.h" />
@@ -82,8 +82,9 @@
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginManager.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLPluginSDK.h" />
     <ClInclude Include="..\..\source\lib\ffgl\FFGLThumbnailInfo.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ShaderCode.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\ImageEffects-High-Mid-Low.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\Effect.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\_config.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\_shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>

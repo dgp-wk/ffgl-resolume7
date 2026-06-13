@@ -100,7 +100,7 @@
     <ClCompile Include="..\..\source\lib\ffglex\FFGLUtilities.cpp">
       <Filter>lib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\plugins\ImageEffects-Levels\Effect.cpp" />
+    <ClCompile Include="..\..\source\plugins\ImageEffects-Alpha\Effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\lib\ffgl\FFGL.h">
@@ -208,13 +208,13 @@
     <ClInclude Include="..\..\source\lib\ffglquickstart\FFGLUtils.h">
       <Filter>lib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\Effect.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\_config.h" />
-    <ClInclude Include="..\..\source\plugins\ImageEffects-Levels\_shader.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Alpha\_config.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Alpha\_shader.h" />
+    <ClInclude Include="..\..\source\plugins\ImageEffects-Alpha\Effect.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="lib">
-      <UniqueIdentifier>{53d531a6-888d-47c1-97cd-755d4f9cd397}</UniqueIdentifier>
+      <UniqueIdentifier>{762c2f20-8ee6-4885-9e61-8cacf6286d2b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
