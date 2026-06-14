@@ -46,7 +46,7 @@ void main()
 	if( color.a > 0.0 )
 		color.rgb /= color.a;
 
-	float luma		 = (color.r + color.g + color.b) * 0.333;
+	float luma		 = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
 
 	float lowFactor	 = 1.0 - smoothstep(u_thresholdLow, u_thresholdLow + u_fade, luma);
 
@@ -54,9 +54,12 @@ void main()
 
 	float midFactor  = ((lowFactor + highFactor) - 1) * -1;
 
-	float highAdjust = highFactor * (pow(2, u_levelHigh) -1);
-	float midAdjust  = midFactor  * (pow(2, u_levelMid)  -1);
-	float lowAdjust  = lowFactor  * (pow(2, u_levelLow)  -1);
+	// Fast Photographic Polynomial Exposure (Zero SFU overhead)
+	// Approximation of 'pow(2.0, x) - 1.0' for the [-1, 3] range
+	float highAdjust = highFactor * (u_levelHigh * (0.6953 + u_levelHigh * (0.2244 + u_levelHigh * 0.0768)));
+	float midAdjust  = midFactor  * (u_levelMid  * (0.6953 + u_levelMid  * (0.2244 + u_levelMid  * 0.0768)));
+	float lowAdjust  = lowFactor  * (u_levelLow  * (0.6953 + u_levelLow  * (0.2244 + u_levelLow  * 0.0768)));
+
 
 	color = (color * highAdjust) + (color * midAdjust) + (color * lowAdjust) + (u_lowOffset * lowFactor);
 

@@ -27,85 +27,62 @@
 	You'll also be able to watch what gets submitted for compilation at lines 246 (Vertex) and 268 (Fragment).
 */
 
-static const std::string fshader1 = R"(
-
-float saturate(float value)
-{
-	return max(0.0,min(1.0,value));
-}
-
-float applyLGG(float lift, float invGamma, float gain, float value)
-{
-	float lerpValue = saturate(pow(value, invGamma));
-	value = gain * lerpValue + lift * ( 1.0 - lerpValue );
-
-	return value;
-}
-
-void main()
-{
-	vec4 color = texture( inputTexture, i_uv );
-
-	//The InputTexture contains premultiplied colors, so we need to unpremultiply first to apply our effect on straight colors.
-	if( color.a > 0.0 )
-		color.rgb /= color.a;
-	
-	vec4 liftColor = u_liftColor, gammaColor = u_gammaColor, gainColor = u_gainColor;
-	vec4 liftAdjust, gammaAdjust, gainAdjust, inverse_gammaAdjust;
-	vec4 grey;
-
-	float avgLift	= (liftColor.r + liftColor.g + liftColor.b)/3.0;
-	float avgGamma	= (gammaColor.r + gammaColor.g + gammaColor.b)/3.0;
-	float avgGain	= (gainColor.r + gainColor.g + gainColor.b)/3.0;
-
-//	liftColor		= liftColor - avgLift;
-//	gammaColor		= gammaColor - avgGamma;
-//	gainColor		= gainColor - avgGain;
-
-	grey			= 0.5 + (gammaColor + midtoneOffset);
-
-	liftAdjust		= 0.0 + (liftColor + shadowOffset);
-	gammaAdjust.r	= log( (0.5 - liftAdjust.r) / (gainAdjust.r - liftAdjust.r) ) / log(grey.r);
-	gammaAdjust.g	= log( (0.5 - liftAdjust.g) / (gainAdjust.g - liftAdjust.g) ) / log(grey.g);
-	gammaAdjust.b	= log( (0.5 - liftAdjust.b) / (gainAdjust.b - liftAdjust.b) ) / log(grey.b);
-	gainAdjust		= 1.0 + (gainColor + highlightOffset);
-
-	inverse_gammaAdjust.r	= 1.0/ gammaAdjust.r;
-	inverse_gammaAdjust.g	= 1.0/ gammaAdjust.g;
-	inverse_gammaAdjust.b	= 1.0/ gammaAdjust.b;
-	
-	color.r*=		applyLGG(liftAdjust.r, inverse_gammaAdjust.r, gainAdjust.r, color.r);
-	color.g*=		applyLGG(liftAdjust.g, inverse_gammaAdjust.g, gainAdjust.g, color.g);
-	color.b*=		applyLGG(liftAdjust.b, inverse_gammaAdjust.b, gainAdjust.b, color.b);
-
-	//The plugin has to output premultiplied colors, this is how we're premultiplying our straight color while also
-	//ensuring we aren't going out of the LDR the video engine is working in.
-	color.rgb = clamp( color.rgb * color.a, vec3( 0.0 ), vec3( color.a ) );
-	fragColor = color;
-}
-)";
-
 static const std::string fshader = R"(
 
+//Uniforms
+// float u_lumaBandPoint
+// float u_lumaBandWidth
+// float u_fade
+// vec4  u_tint
+// float u_lift
+// float u_gamma
+// float u_gain
+// float u_offset
+
+
 void main()
 {
 	vec4 color = texture( inputTexture, i_uv );
 
-	//The InputTexture contains premultiplied colors, so we need to unpremultiply first to apply our effect on straight colors.
+	// The InputTexture contains premultiplied colors, so we need to unpremultiply first to apply our effect on straight colors.
 	if( color.a > 0.0 )
 		color.rgb /= color.a;
+
+	float luma				= dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
+
+	float bandBottom		= u_lumaBandPoint - (u_lumaBandWidth * 0.5);
+	float bandTop			= u_lumaBandPoint + (u_lumaBandWidth * 0.5);
+
+	float lowEdge			= smoothstep(bandBottom - u_fade, bandBottom, luma);
+	float highEdge			= 1.0 - smoothstep(bandTop, bandTop + u_fade, luma);
+	float effectStrength	= lowEdge * highEdge * color.a;
+
+	vec3 baseColor			= color.rgb;
+	vec3 adjustedColor		= baseColor;
+
+	// Lift
+	adjustedColor			= adjustedColor * (1.0 - u_lift) + u_lift;
+
+	// Gamma
+	float gDelta            = u_gamma - 1.0;
+	float gammaCurve         = gDelta * (-0.4621 + gDelta * (0.1983 - gDelta * 0.0461));
+	adjustedColor           += adjustedColor * gammaCurve;
+
+	// Gaim
+	adjustedColor			*= u_gain;
 	
-	vec4 lift = u_lift, gamma = u_gamma, gain = u_gain;
-	lift.rgb *= (lift.a) * liftStrength;
-	gamma.rgb *= gamma.a;
-	gain.rgb *= gain.a;
+	// Offset
+	adjustedColor			+= u_offset;
 
-	color.rgb += lift.rgb;
-	color.rgb = pow(color.rgb, 1/gamma.rgb);	
-	color.rgb *= gain.rgb;
+	// Tint
+	adjustedColor			+= u_tint.rgb;
 
-	//The plugin has to output premultiplied colors, this is how we're premultiplying our straight color while also
-	//ensuring we aren't going out of the LDR the video engine is working in.
+	// Clamp color delta and mix with base color.
+	adjustedColor			= clamp(adjustedColor, 0.0, 1.0);
+	color.rgb				= mix(baseColor, adjustedColor, effectStrength);
+
+	// The plugin has to output premultiplied colors, this is how we're premultiplying our straight color while also
+	// ensuring we aren't going out of the LDR the video engine is working in.
 	color.rgb = clamp( color.rgb * color.a, vec3( 0.0 ), vec3( color.a ) );
 	fragColor = color;
 }

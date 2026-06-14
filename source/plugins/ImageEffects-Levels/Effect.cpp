@@ -12,9 +12,9 @@ Effect::Effect()
 {
 	
 
-	AddParam( ffglqs::ParamRange::Create( "u_levelHigh",	1.0f,	ffglqs::ParamRange::Range( 0.0f, 10.0f ) ) );
-	AddParam( ffglqs::ParamRange::Create( "u_levelMid",		1.0f,	ffglqs::ParamRange::Range( 0.0f, 10.0f ) ) );
-	AddParam( ffglqs::ParamRange::Create( "u_levelLow",		1.0f,	ffglqs::ParamRange::Range( 0.0f, 10.0f ) ) );
+	AddParam( ffglqs::ParamRange::Create( "u_levelHigh",	1.0f,	ffglqs::ParamRange::Range( 0.0f, 3.0f ) ) );
+	AddParam( ffglqs::ParamRange::Create( "u_levelMid",		1.0f,	ffglqs::ParamRange::Range( 0.0f, 3.0f ) ) );
+	AddParam( ffglqs::ParamRange::Create( "u_levelLow",		1.0f,	ffglqs::ParamRange::Range( 0.0f, 3.0f ) ) );
 
 	AddParam( ffglqs::ParamRange::Create( "u_lowOffset",	0.0f,	ffglqs::ParamRange::Range( -0.5f, 0.5f ) ) );
 
